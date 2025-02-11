@@ -1,0 +1,102 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+header {
+    background-color: #d9534f;
+    color: white;
+    text-align: center;
+    padding: 1em;
+}
+
+main {
+    padding: 20px;
+    text-align: center;
+}
+
+button#sos-button {
+    background-color: #d9534f;
+    color: white;
+    padding: 20px;
+    font-size: 24px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button#sos-button:hover {
+    background-color: #c9302c;
+}
+
+form {
+    margin-top: 20px;
+}
+
+input, button[type="submit"] {
+    padding: 10px;
+    margin: 5px;
+    font-size: 16px;
+}
+
+footer {
+    text-align: center;
+    background-color: #333;
+    color: white;
+    padding: 10px;
+}
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+header {
+    background-color: #ff4d4d;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+h2 {
+    color: #333;
+}
+
+textarea {
+    width: 100%;
+    height: 100px;
+    margin: 10px 0;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#emergencies-list {
+    list-style: none;
+    padding: 0;
+}
+
+#emergencies-list li {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    margin: 10px 0;
+    padding: 10px;
+}
+
+button#help-btn {
+    background-color: #007bff;
+    margin-right: 10px;
+}
+
+button#no-btn {
+    background-color: #dc3545;
+}
