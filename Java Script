@@ -1,0 +1,98 @@
+// script.js
+document.addEventListener("DOMContentLoaded", () => {
+    const sosButton = document.getElementById('sos-button');
+    const status = document.getElementById('status');
+    const contactsForm = document.getElementById('contacts-form');
+    const contactsList = document.getElementById('contacts-list');
+
+    // SOS button click event
+    sosButton.addEventListener('click', () => {
+        status.textContent = 'Sending SOS...';
+        sendLocation();
+    });
+
+    // Function to get and send user's location
+    function sendLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position) => {
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
+
+                status.textContent = `Location sent! Latitude: ${latitude}, Longitude: ${longitude}`;
+
+                // You can send the location via an SMS API like Twilio
+                // sendToEmergencyContact(latitude, longitude);
+            }, () => {
+                status.textContent = 'Unable to retrieve location';
+            });
+        } else {
+            status.textContent = 'Geolocation not supported by your browser';
+        }
+    }
+
+    // Add contact form submission event
+    contactsForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const contactName = document.getElementById('contact-name').value;
+        const contactPhone = document.getElementById('contact-phone').value;
+
+        if (contactName && contactPhone) {
+            const li = document.createElement('li');
+            li.textContent = `${contactName} - ${contactPhone}`;
+            contactsList.appendChild(li);
+
+            // Clear form after adding
+            contactsForm.reset();
+        }
+    });
+});
+// script.js
+document.addEventListener("DOMContentLoaded", () => {
+    const postBtn = document.getElementById('post-btn');
+    const emergenciesList = document.getElementById('emergencies-list');
+
+    postBtn.addEventListener('click', () => {
+        const message = document.getElementById('emergency-message').value;
+        if (message.trim()) {
+            postEmergency(message);
+        }
+    });
+
+    function postEmergency(message) {
+        const timestamp = new Date().toISOString();
+        const emergency = { message, timestamp };
+
+        // Display the emergency on the screen
+        const li = document.createElement('li');
+        li.innerHTML = `<p>${message}</p>
+                        <button id="help-btn">Yes, I Can Help</button>
+                        <button id="no-btn">No</button>`;
+        emergenciesList.appendChild(li);
+
+        // Set a timeout to remove the message after 30 minutes (1800000 ms)
+        setTimeout(() => {
+            emergenciesList.removeChild(li);
+        }, 1800000); // 30 minutes
+
+        // Handle user responses
+        li.querySelector('#help-btn').addEventListener('click', () => {
+            logUserResponse('yes');
+        });
+
+        li.querySelector('#no-btn').addEventListener('click', () => {
+            logUserResponse('no');
+        });
+    }
+
+    function logUserResponse(response) {
+        if (response === 'yes') {
+            // Collect and store user details (predefined contact)
+            const userContact = { name: 'John Doe', phone: '1234567890' }; // Example data
+            alert(`Help response recorded. Contact: ${userContact.name}, ${userContact.phone}`);
+            // Here, you can send this info to the server
+        } else {
+            alert('No response recorded.');
+        }
+    }
+});
